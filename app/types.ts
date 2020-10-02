@@ -1,4 +1,8 @@
-import { ComponentType, ForwardRefExoticComponent, SFC } from 'react'
+import {
+    ComponentType,
+    ForwardRefExoticComponent,
+    FunctionComponent,
+} from 'react'
 import * as z from 'zod'
 import {
     ChildrenInspectorRenderer,
@@ -106,7 +110,7 @@ export type ParentContext = {
     childrenCompRef?: React.MutableRefObject<(SVGElement | HTMLElement)[]>
 }
 
-export type ChildrenMoveable = SFC<{
+export type ChildrenMoveable = FunctionComponent<{
     target: HTMLElement
     requestUpdateProps: (prop: {
         containerLayoutProps?: ContainerLayoutProps
@@ -146,6 +150,8 @@ export type InspectorProps<T, Option = {}> = {
     connectedFields?: string[]
 } & Option
 
-export type Inspector<T, Option = {}> = SFC<InspectorProps<T, Option>>
+export type Inspector<T, Option = {}> = FunctionComponent<
+    InspectorProps<T, Option>
+>
 
 export type Debugging = [ComponentPath | undefined, any?]

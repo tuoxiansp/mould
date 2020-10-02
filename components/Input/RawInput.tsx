@@ -1,4 +1,4 @@
-import { SFC } from 'react'
+import { FunctionComponent } from 'react'
 import styled from 'styled-components'
 import { InputProps } from './InputProps'
 import {
@@ -19,9 +19,9 @@ const alignMapToFlex = {
     right: 'flex-end',
 }
 
-export const RawInput: SFC<InputProps & { ref: any }> = styled.input.attrs<
-    InputProps
->((props) => ({
+export const RawInput: FunctionComponent<
+    InputProps & { ref: any }
+> = styled.input.attrs<InputProps>((props) => ({
     value: props.value || '',
     placeholder: props.placeholder || '',
     onClick: mouseEventWrapper(props.onClick),

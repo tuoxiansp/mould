@@ -1,4 +1,4 @@
-import React, { SFC } from 'react'
+import React, { FunctionComponent } from 'react'
 import { TitledBoard, ControlGrid, ControlGridItem } from './FormComponents'
 import {
     Plus,
@@ -136,7 +136,7 @@ export const unitMapDefaultAmount: {
     auto: 1,
 }
 
-const LayoutSizeEditor: SFC<{
+const LayoutSizeEditor: FunctionComponent<{
     value: LayoutSize
     onChange: (newValue: LayoutSize) => void
     title: string

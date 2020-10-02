@@ -2,11 +2,11 @@ import { Alignment, Button, Classes, MenuItem } from '@blueprintjs/core'
 import { Select } from '@blueprintjs/select'
 import * as IconSet from 'react-feather'
 import * as React from 'react'
-import { SFC } from 'react'
+import { FunctionComponent } from 'react'
 
 const TypedSelect = Select.ofType<string>()
 
-export const IconSelect: SFC<{
+export const IconSelect: FunctionComponent<{
     name?: string
     onChange: (iconName?: string) => void
 }> = (props) => {

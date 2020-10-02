@@ -1,4 +1,4 @@
-import React, { SFC, ReactElement } from 'react'
+import React, { FunctionComponent, ReactElement } from 'react'
 import { LayoutSize } from './Layout'
 import { ParentContext } from '../app/types'
 
@@ -24,7 +24,7 @@ export type ChildrenInspectorRenderer = (
     onChange: (newData: ContainerLayoutProps) => void
 ) => ReactElement
 
-export const ContainerRelatedInspectors: SFC<{
+export const ContainerRelatedInspectors: FunctionComponent<{
     parent?: ParentContext
     data: ContainerLayoutProps | undefined
     onChange: (newData: ContainerLayoutProps) => void

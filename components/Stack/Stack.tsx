@@ -1,4 +1,4 @@
-import React, { forwardRef, SFC } from 'react'
+import React, { forwardRef, FunctionComponent } from 'react'
 import * as z from 'zod'
 import { ComponentInspector } from '../../app/Inspectors'
 import {
@@ -252,7 +252,7 @@ const getFlexDirectionForGap = (
     return 'column'
 }
 
-const Gap: SFC<
+const Gap: FunctionComponent<
     StackProps & { ref: any; canDrop: boolean; isOver: boolean }
 > = styled.div.attrs<
     StackProps & { ref: any; canDrop: boolean; isOver: boolean }
@@ -323,7 +323,7 @@ const GapLine = styled.div<{ direction: 'row' | 'column' }>`
               `}
 `
 
-const StackGap: SFC<
+const StackGap: FunctionComponent<
     StackProps & { path?: Path; isOver: boolean; index: number }
 > = ({ path, isOver: parentOver, index, ...rest }) => {
     const dispatch = useDispatch()

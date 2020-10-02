@@ -1,4 +1,4 @@
-import React, { SFC, forwardRef } from 'react'
+import React, { FunctionComponent, forwardRef } from 'react'
 import styled from 'styled-components'
 import { IconProps } from '../../standard'
 import * as IconSet from 'react-feather'
@@ -24,7 +24,7 @@ const Container = styled.div.attrs<IconProps>((props) => ({
     height: ${(props) => props.size || '100%'};
 `
 
-export const RawIcon: SFC<IconProps & { ref: any }> = forwardRef(
+export const RawIcon: FunctionComponent<IconProps & { ref: any }> = forwardRef(
     (prop, ref) => {
         if (prop.name !== undefined) {
             const SelectedIcon: typeof IconSet.Activity = IconSet[prop.name]

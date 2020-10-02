@@ -1,4 +1,4 @@
-import React, { SFC } from 'react'
+import React, { FunctionComponent } from 'react'
 import styled from 'styled-components'
 import { TextProps } from '../../standard'
 
@@ -14,9 +14,9 @@ const alignMapToFlex = {
     right: 'flex-end',
 }
 
-export const RawText: SFC<TextProps & { ref: any }> = styled.div.attrs<
-    TextProps
->((props) => ({
+export const RawText: FunctionComponent<
+    TextProps & { ref: any }
+> = styled.div.attrs<TextProps>((props) => ({
     children: props.content || 'Text',
     onClick: mouseEventWrapper(props.onClick),
     onClickCapture: mouseEventWrapper(props.onClickCapture),

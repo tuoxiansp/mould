@@ -2,7 +2,7 @@ import * as StringControl from './StringControl'
 import * as NumberControl from './NumberControl'
 import * as BooleanControl from './BooleanControl'
 import * as FunctionControl from './FunctionControl'
-import { SFC } from 'react'
+import { FunctionComponent } from 'react'
 
 export default {
     string: StringControl,
@@ -11,7 +11,7 @@ export default {
     function: FunctionControl,
 } as {
     [key: string]: {
-        Editor: SFC
-        Renderer: SFC<any>
+        Editor: FunctionComponent
+        Renderer: FunctionComponent<any>
     }
 }

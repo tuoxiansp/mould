@@ -1,4 +1,4 @@
-import React, { SFC, RefForwardingComponent } from 'react'
+import React, { FunctionComponent } from 'react'
 import styled from 'styled-components'
 import { StackProps } from '../../standard'
 import * as z from 'zod'
@@ -22,9 +22,9 @@ const flexDirectionToMarginSide = (
     }
 }
 
-export const RawFrame: SFC<StackProps & { ref: any }> = styled.div.attrs<
-    StackProps
->((props) => ({
+export const RawFrame: FunctionComponent<
+    StackProps & { ref: any }
+> = styled.div.attrs<StackProps>((props) => ({
     onClick: mouseEventWrapper(props.onClick),
     onClickCapture: mouseEventWrapper(props.onClickCapture),
 }))<StackProps>`

@@ -2,7 +2,7 @@ import React from 'react'
 import { LayoutInspector } from '../../inspector/Layout'
 import * as z from 'zod'
 import { BaseComponentProps } from './baseprops'
-import { SFC } from 'react'
+import { FunctionComponent } from 'react'
 import { FillInspector } from '../../inspector/Fill'
 import { ParentContext } from '../../app/types'
 import { ContainerRelatedInspectors } from '../../inspector/InspectorProvider'
@@ -10,7 +10,7 @@ import { BorderInspector } from '../../inspector/Border'
 var y = z.enum(['a', 'b'])
 var x: z.infer<typeof y>
 
-export const BaseComponentInspectors: SFC<{
+export const BaseComponentInspectors: FunctionComponent<{
     parent: ParentContext | undefined
     data: BaseComponentProps
     requestUpdateProps: (newValue: BaseComponentProps) => void

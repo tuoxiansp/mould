@@ -1,6 +1,6 @@
 import { HTMLSelect, IOptionProps, NumericInput } from '@blueprintjs/core'
 import { Text } from '@modulz/radix'
-import React, { SFC, useMemo } from 'react'
+import React, { FunctionComponent, useMemo } from 'react'
 import { Minus, Plus } from 'react-feather'
 import {
     ControlGrid,
@@ -39,7 +39,7 @@ const layoutSizeUnitOptions: IOptionProps[] = [
     },
 ]
 
-const LayoutSizeEditor: SFC<{
+const LayoutSizeEditor: FunctionComponent<{
     value: LayoutSize
     onChange: (newValue: LayoutSize) => void
     title: string
