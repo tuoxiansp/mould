@@ -6032,6 +6032,13 @@ jest-worker@24.9.0:
     merge-stream "^2.0.0"
     supports-color "^6.1.0"
 
+jotai@^0.8.0:
+  version "0.8.0"
+  resolved "https://registry.yarnpkg.com/jotai/-/jotai-0.8.0.tgz#d90ec7ccecdf736729d3c6137f3bddd2517b87d4"
+  integrity sha512-9gkNyP49rJwgLXlxjAmXkVeoflwgPb1FVDA1wcEU3X5djb5WHcKPdTPABYNNVCOf7yzhQJ2tL9JMu3+GWyCSTg==
+  dependencies:
+    use-context-selector "1.2.2"
+
 js-base64@^2.1.8:
   version "2.5.2"
   resolved "https://registry.yarnpkg.com/js-base64/-/js-base64-2.5.2.tgz#313b6274dda718f714d00b3330bbae6e38e90209"
@@ -10329,6 +10336,11 @@ use-callback-ref@^1.2.1:
   version "1.2.1"
   resolved "http://registry.npm.taobao.org/use-callback-ref/-/use-callback-ref-1.2.1.tgz#898759ccb9e14be6c7a860abafa3ffbd826c89bb"
   integrity sha512-C3nvxh0ZpaOxs9RCnWwAJ+7bJPwQI8LHF71LzbQ3BvzH5XkdtlkMadqElGevg5bYBDFip4sAnD4m06zAKebg1w==
+
+use-context-selector@1.2.2:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/use-context-selector/-/use-context-selector-1.2.2.tgz#b1a7d0899e7ab4391a5a08a3d7ab71f1e27cf5de"
+  integrity sha512-1kkfRrlk3ol422nWurgdGq1M2xig4n/cYNd9Xqly1MtrNPiEbxQYLBE1adE5BeGu374pIq0garxtf6/wd1GNbw==
 
 use-sidecar@^1.0.1:
   version "1.0.1"

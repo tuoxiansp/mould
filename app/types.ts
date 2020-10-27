@@ -11,8 +11,6 @@ import {
 import { LayoutPropTypes } from '../inspector/Layout'
 
 export type ID = string
-export type MouldName = string
-export type StateName = string
 export type ComponentIndex = number
 export type Desc = string
 
@@ -26,38 +24,47 @@ export type Size = {
     height: number
 }
 
-export type ComponentPath = [MouldName, StateName]
+export type ViewportPath = number
 
-export type Path = [ComponentPath, ComponentIndex[]]
+export type Path = [ViewportPath, ComponentIndex[]]
 
-export type View = {
-    id: ID
-    mouldName: MouldName
-    state: StateName
-} & Size &
-    Vector
+export type ViewportBase = Size & Vector
 
-export type Workspace = {
-    id: ID
-    views: ID[]
-    zoom?: number
-} & Vector
+export type MouldViewport = {
+    type: 'Mould'
+} & ViewportBase
+
+export type KitViewport = {
+    type: 'Kit'
+    state: string
+    targetName: string
+} & ViewportBase
+
+export type TemplateViewport = {
+    type: 'Template'
+    targetName: string
+} & ViewportBase
+
+export type Viewport = MouldViewport | KitViewport | TemplateViewport
+
+//[prop-field, scope-field]
+export type DataMappingVector = [string, string]
 
 export type Component = {
     type: string
     props: object
     children?: Component[]
+    dataMappingVectors: DataMappingVector
 }
 
-//[prop-field, scope-field]
-export type DataMappingVector = [string, string]
+export type Template = {
+    name: string
+    component: Component
+}
 
 export type Kit = {
-    name: ID
-    type: string
-    isList?: boolean
-    param?: object
-    dataMappingVector: DataMappingVector[]
+    name: string
+    states: { [key: string]: Component }
 }
 
 export type InputConfig<Config = any> = {
@@ -66,11 +73,23 @@ export type InputConfig<Config = any> = {
 
 export type Mould = {
     name: string
-    scope: string[]
-    kits: Kit[]
     input: { [key: string]: InputConfig }
-    states: { [key: string]: Component | null }
+    component: Component | undefined
 }
+
+export type Collection = {
+    mould: Mould
+    kits: Kit[]
+    templates: Template[]
+}
+
+export type Workspace = {
+    mouldName: string
+    viewports: Viewport[]
+    position: Vector
+    zoom?: number
+    selection?: Path
+} & Collection
 
 export type ComponentPropTypes = {
     requestUpdateProps?: (props: object) => void
@@ -81,24 +100,31 @@ export type ComponentPropTypes = {
     connectedFields?: string[]
 } & Component
 
-// export type Creating = ['waiting' | 'start' | 'updating', View]
+export type CreatingStatus = 'none' | 'waiting' | 'start' | 'updating'
+
+// export type Creating = ['none' | 'waiting' | 'start' | 'updating', View]
 export type Creating = {
     status: 'waiting' | 'start' | 'updating'
-    view: View
+    view: Viewport
     beginAt: Vector
     injectedKitName?: string
 }
 
 export type EditorState = {
-    testWorkspace: Workspace
-    views: { [key: string]: View }
-    moulds: Mould[]
-    selection?: Path //[[mouldName, state], indexPath[]]
-    creating?: Creating
-    recursiveRendered?: string[]
-    isDragging?: boolean
-    debugging: Debugging
+    workspaces: Workspace[]
+    currentWorkspace: string
 }
+
+// export type EditorState = {
+//     testWorkspace: Workspace
+//     views: { [key: string]: Viewport }
+//     moulds: Mould[]
+//     selection?: Path //[[mouldName, state], indexPath[]]
+//     creating?: Creating
+//     recursiveRendered?: string[]
+//     isDragging?: boolean
+//     debugging: Debugging
+// }
 
 export type ParentContextProps = {
     parent?: ParentContext
@@ -141,7 +167,7 @@ export type AtomicComponent = {
     acceptChildren?: boolean
 }
 
-export type useScopeFn = (input: object) => [object, StateName]
+export type useScopeFn = (input: object) => [object, string]
 
 export type InspectorProps<T, Option = {}> = {
     data: T | undefined
@@ -154,4 +180,4 @@ export type Inspector<T, Option = {}> = FunctionComponent<
     InspectorProps<T, Option>
 >
 
-export type Debugging = [ComponentPath | undefined, any?]
+// export type Debugging = [ComponentPath | undefined, any?]

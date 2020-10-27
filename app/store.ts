@@ -1,11 +1,12 @@
 import { createStore, applyMiddleware, compose } from 'redux'
 import reducers from './reducers'
 import reduceReducers from 'reduce-reducers'
-import { initialData } from './utils'
+// import { initialData } from './utils'
 import { createProcessReducers } from '../lib/undo-redux'
 import { EditorState } from './types'
 import { initApolloClient } from '../apollo/client'
 import gql from 'graphql-tag'
+import initialData from './initialData'
 
 const client = initApolloClient()
 
@@ -39,25 +40,26 @@ function logger({ getState }) {
     }
 }
 
-const diff = (prev: EditorState, next: EditorState) => {
-    if (prev.testWorkspace.views !== next.testWorkspace.views) {
-        return true
-    }
+// TODO fix diff
+// const diff = (prev: EditorState, next: EditorState) => {
+//     if (prev.testWorkspace.views !== next.testWorkspace.views) {
+//         return true
+//     }
 
-    if (prev.views !== next.views) {
-        return true
-    }
+//     if (prev.views !== next.views) {
+//         return true
+//     }
 
-    if (prev.moulds !== next.moulds) {
-        return true
-    }
+//     if (prev.moulds !== next.moulds) {
+//         return true
+//     }
 
-    if (prev.recursiveRendered !== next.recursiveRendered) {
-        return true
-    }
+//     if (prev.recursiveRendered !== next.recursiveRendered) {
+//         return true
+//     }
 
-    return false
-}
+//     return false
+// }
 
 let store
 
@@ -67,7 +69,8 @@ export const getStore = (schemas = {}) => {
             reduceReducers(
                 schemas || initialData,
                 createProcessReducers<EditorState>({
-                    fieldFilter: diff,
+                    // fieldFilter: diff,
+                    fieldFilter: () => true,
                     actionFilter: () => true,
                 })(...reducers()) as any
             ),
